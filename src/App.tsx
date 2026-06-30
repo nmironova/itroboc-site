@@ -28,8 +28,9 @@ function App() {
         <div className="page">
             <main>
                 <section className="hero">
-                    <img className="logo" src="/logo.jpg" alt="ITROBOC logo" />
+                    <img className="logo" src="/bug.jpg" alt="ITROBOC mascot" />
                     <div className="scanner-line" />
+                    <p className="brand">ITROBOC</p>
 
                     <p className="eyebrow">Private Android Beta</p>
 
