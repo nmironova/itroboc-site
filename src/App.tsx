@@ -47,7 +47,7 @@ function App() {
                     <h2>From barcoded cards to PBN.</h2>
 
                     <div className="steps">
-                        <div>Scan cards</div>
+                        <div>Scan cards!</div>
                         <span>→</span>
                         <div>Complete deal</div>
                         <span>→</span>
