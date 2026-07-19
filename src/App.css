@@ -159,7 +159,7 @@ h2 {
 }
 
 .feature-card h3 {
-    color: green;
+    color: #d6b56b;
     font-size: clamp(16px, 1.45vw, 18px);
     line-height: 1.16;
     margin-bottom: 9px;
