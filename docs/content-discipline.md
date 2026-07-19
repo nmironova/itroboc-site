@@ -82,13 +82,17 @@ But public copy should usually stay simple.
 
 ## Current known claim calibration
 
-Known from current discussion:
+Known from current discussion and Selyn's site-truth draft:
 
-- `Photo recognition` is **Planned**.
+- `Photo recognition` is **Planned** and should not be described as current behavior.
+- `Generic OCR`, `multi-card snap recognition`, online scoring, and Bridgemate replacement are not current claims.
 - `Card-by-card scanning` is at least **Beta** / working product flow.
+- `Fourth-hand auto-fill` is a real product strength; classify against Android truth before final public wording.
 - `Deck profiles` are real product architecture and should be treated as **Checked** when phrased at the right level.
 - `Multiple codes per card` is supported through aliases and should be treated as **Checked** when phrased as profile aliases.
-- `PBN export` is **Checked** for complete boards.
+- `Recovery controls` such as Undo, Scissors, Swap, `I'm sure`, and Clear are real current strengths; classify as Beta or Checked depending on final Android truth wording.
+- `PBN export/share/save` for complete boards is **Checked** when phrased correctly.
+- `DDS-preserving PBN import/export` is a current strength when grounded against Android docs.
 
 This list should be updated as Android repo truth changes.
 
@@ -145,6 +149,16 @@ Preferred tone:
 specific, practical, bridge-literate, calm, confident
 ```
 
+Useful Selyn flavor:
+
+```text
+small beetle, serious table job
+fast deal capture
+less manual typing
+safe recovery from field mistakes
+PBN output for real tournament workflows
+```
+
 ## Feature copy checklist
 
 Before publishing a feature claim, ask:
@@ -155,6 +169,45 @@ Before publishing a feature claim, ask:
 4. Does it imply robustness we do not have yet?
 5. Does it explain value without exposing unnecessary implementation detail?
 6. Does it reduce confusion for non-technical bridge people?
+
+## First landing-page truth-alignment ticket
+
+Selyn's first-ticket direction remains valid.
+
+Goal:
+
+```text
+Make the landing page truthful and launchable.
+```
+
+Scope:
+
+1. Replace the default Vite `README.md` with an ITROBOC site README.
+2. Document local commands:
+   - `npm install`
+   - `npm run dev`
+   - `npm run build`
+   - `npm run preview`
+   - `npm run lint`
+3. Align `src/App.tsx` copy with current Android repo truth.
+4. Remove or clearly mark future-only `Photo recognition`.
+5. Add or revise landing-page content for current strengths:
+   - TD card-by-card scanning;
+   - fourth-hand auto-fill;
+   - deck profiles;
+   - recovery controls;
+   - PBN export/share/save;
+   - DDS-preserving PBN import/export;
+   - private Android beta status.
+6. Keep the existing dark/gold beetle scanner look unless Archy asks for redesign.
+7. Add deployment notes for Vercel / `https://itroboc.com/` once the current setup is inspected.
+
+Non-goals:
+
+- do not build a full documentation portal yet;
+- do not invent download links before release policy is clear;
+- do not claim OCR, generic photo recognition, multi-card snap recognition, online scoring, or Bridgemate replacement;
+- do not duplicate Android architecture docs inside the site repo.
 
 ## Docs hygiene patrol setup
 
