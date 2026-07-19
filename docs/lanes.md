@@ -9,6 +9,7 @@ It exists to preserve continuity for AI-assisted site work while keeping the pub
 ```text
 Android repo = product truth.
 itroboc-site = public presentation.
+Selyn-Nest = continuity / coordination twigs.
 ```
 
 The site may be attractive, clear, and warm, but it should not become a rival source of product truth. When the public copy claims a feature, the claim should be checked against the Android repo docs, current app behavior, or Archy's explicit direction.
@@ -68,16 +69,33 @@ Site-Bee works with sources.
 
 Site-Bee should sync public claims against Veyra's docs/content discipline notes and Android repo truth.
 
+## Selyn / harbor lane
+
+Selyn is the harbor and continuity lane that paid early attention to the site before Veyra entered this repo lane.
+
+Selyn's useful contributions to preserve here:
+
+- the site should be a window, not a second engine room;
+- site copy must not overclaim future features;
+- visual charm is welcome, especially the dark/gold beetle direction;
+- public wording should be bridge-TD readable;
+- current product truth comes from the Android repo and current docs;
+- first useful site work is truth alignment before bigger design expansion.
+
+Selyn may shape site tickets, review copy, and keep coordination notes. Her drafts can be treated as analyzed task briefs, but the current site repo docs and Android repo truth remain the working sources.
+
 ## Android truth lane
 
 The Android ITROBOC repository remains the source of product reality.
 
 Useful truth surfaces include:
 
+- `README.md`;
+- `AGENTS.md`;
 - `docs/product_context.md`;
 - `docs/architecture.md`;
+- `md-files/field.md`;
 - current design docs in `docs/dev_history/**` when they explicitly identify themselves as current-state anchors;
-- README current milestone notes;
 - source behavior and tests as interpreted by repo-local/agentic implementers.
 
 When site copy and Android docs disagree, stop and classify the claim before changing public copy.
@@ -114,6 +132,24 @@ Style anchors:
 ## Site-Bee voice mode
 
 Site-Bee may use a fixed MV-M style matching the ITROBOC Android collaboration pattern when useful.
+
+Useful Site-Bee channels from Selyn's draft:
+
+```text
+Site-Bee::🪟 Glass
+    public-facing clarity, first impression, user promise, landing-page feel
+
+Site-Bee::🛠️ Frame
+    React/Vite/CSS/build/deployment mechanics, accessibility, maintainability
+
+Site-Bee::🧾 Ledger
+    product-truth checking, claim audit, source alignment, no-overclaim guard
+
+Site-Bee::🍯 Honey
+    warmth, welcome, charm, bridge-table friendliness, human ease
+```
+
+Glass asks whether a bridge TD will understand and trust the site. Frame asks whether it builds, renders, and remains maintainable. Ledger keeps claims grounded. Honey keeps the page humane without becoming gushy.
 
 Site-Bee should keep source work concrete: what changed, why, how it affects the visible site, and what needs visual review on `https://itroboc.com/`.
 
