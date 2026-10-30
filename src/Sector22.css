@@ -1,0 +1,41 @@
+.sector22 {
+  background: #0b100e;
+  color: #edf5e9;
+  color-scheme: dark;
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  text-align: left;
+  min-height: 100svh;
+  padding: 24px 16px max(24px, env(safe-area-inset-bottom));
+}
+.sector22 .s22-panel { max-width: 640px; margin: auto; }
+.sector22 header { border-bottom: 2px solid #d2ee74; padding-bottom: 20px; }
+.sector22 .s22-kicker { color: #b0bcae; font-size: 11px; letter-spacing: .08em; }
+.sector22 h1 { color: #edf5e9; font: 800 48px/1.1 ui-monospace, monospace; margin: 12px 0 8px; letter-spacing: -.04em; }
+.sector22 h1 span { color: #d2ee74; }
+.sector22 header > p:last-child { font-size: 13px; letter-spacing: .08em; }
+.sector22 .s22-status { position: sticky; top: 8px; z-index: 1; border: 1px solid #64745c; background: #172018; padding: 14px; margin: 18px 0 24px; font-size: 13px; line-height: 1.5; overflow-wrap: anywhere; }
+.sector22 .s22-sent { color: #d2ee74; border-color: #d2ee74; }
+.sector22 .s22-failed { color: #ffb7aa; border-color: #ffb7aa; }
+.sector22 .s22-sending { color: #ffe195; }
+.sector22 section { margin-bottom: 28px; }
+.sector22 h2 { font: 700 14px/1.4 ui-monospace, monospace; color: #d2ee74; margin: 0 0 14px; letter-spacing: .04em; }
+.sector22 button, .sector22 textarea { font: inherit; border-radius: 6px; }
+.sector22 button { width: 100%; min-height: 64px; padding: 14px 12px; border: 1px solid #9b6557; background: #2a1b17; color: #fff2e9; font-size: 15px; font-weight: 700; line-height: 1.35; cursor: pointer; touch-action: manipulation; }
+.sector22 button:active:not(:disabled) { background: #5c3527; transform: translateY(1px); }
+.sector22 button:disabled { opacity: .45; cursor: default; }
+.sector22 button:focus-visible, .sector22 textarea:focus-visible { outline: 3px solid #ffe195; outline-offset: 3px; }
+.sector22 .s22-alerts { display: grid; gap: 10px; }
+.sector22 small { display: block; color: #d6b9ac; font-size: 11px; text-transform: uppercase; margin-top: 4px; font-weight: 400; }
+.sector22 form { margin-top: 22px; }
+.sector22 label { display: block; font-size: 13px; margin-bottom: 8px; }
+.sector22 textarea { display: block; width: 100%; resize: vertical; background: #111a14; color: #fff; border: 1px solid #71816b; padding: 12px; font-size: 16px; line-height: 1.5; }
+.sector22 textarea::placeholder { color: #a1afa0; }
+.sector22 .s22-transmit { margin-top: 10px; background: #d2ee74; color: #11180d; border-color: #d2ee74; }
+.sector22 .s22-transmit:active:not(:disabled) { background: #b4cf5a; }
+.sector22 .s22-hint { color: #b0bcae; font-size: 13px; margin-bottom: 12px; }
+.sector22 .s22-routes { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; }
+.sector22 .s22-routes button { min-height: 54px; padding: 0; overflow: hidden; font-size: 18px; border-color: #71816b; background: #1b291d; color: #d2ee74; }
+.sector22 .s22-routes img { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; background: #111a14; }
+.sector22 .s22-routes span { display: block; padding: 6px 0; }
+.sector22 footer { border-top: 1px solid #46513f; padding-top: 18px; font-size: 10px; color: #b0bcae; }
+@media (min-width: 520px) { .sector22 .s22-alerts { grid-template-columns: 1fr 1fr; } .sector22 { padding: 32px 24px; } }
