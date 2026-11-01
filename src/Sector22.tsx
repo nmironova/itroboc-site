@@ -43,7 +43,7 @@ const alerts: Transmission[] = [
   { title: 'ZOMBIES ARE COMING', message: 'Zombies are coming. Stay alert.', priority: 'max' },
   { title: 'INFECTED ACTIVITY DETECTED', message: 'Infected activity detected. Avoid contact.', priority: 'high' },
   { title: 'SAFE ZONE LOST', message: 'Safe zone lost. Await new instructions.', priority: 'max' },
-  { title: 'MEDICAL ALERT', message: 'Medical alert. Check your team.', priority: 'max' },
+  { title: 'POSITION CONFIRMED', message: 'Ваша позиция подтверждена', priority: 'max' },
   { title: 'EVACUATION POINT COMPROMISED', message: 'Evacuation point compromised. Await a new location.', priority: 'high' },
   { title: 'SAFE ROUTE UPDATED', message: 'Safe route updated. Stand by for route data.', priority: 'default' },
 ]
