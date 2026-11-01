@@ -86,6 +86,7 @@ export default function Sector22() {
           <p className="s22-kicker">HALLOWEEN QUEST / COMMAND TERMINAL</p>
           <h1>SECTOR <span>22</span></h1>
           <p>EMERGENCY CONTROL PANEL</p>
+          <p className="s22-topic">NTFY TOPIC: {NTFY_TOPIC}</p>
         </header>
         <div className={`s22-status s22-${result}`} role="status" aria-live="polite" aria-atomic="true">{status}</div>
         <section aria-labelledby="s22-alerts">

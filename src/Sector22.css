@@ -13,6 +13,7 @@
 .sector22 h1 { color: #edf5e9; font: 800 48px/1.1 ui-monospace, monospace; margin: 12px 0 8px; letter-spacing: -.04em; }
 .sector22 h1 span { color: #d2ee74; }
 .sector22 header > p:last-child { font-size: 13px; letter-spacing: .08em; }
+.sector22 .s22-topic { margin-top: 12px; color: #b0bcae; font-size: 12px; overflow-wrap: anywhere; }
 .sector22 .s22-status { position: sticky; top: 8px; z-index: 1; border: 1px solid #64745c; background: #172018; padding: 14px; margin: 18px 0 24px; font-size: 13px; line-height: 1.5; overflow-wrap: anywhere; }
 .sector22 .s22-sent { color: #d2ee74; border-color: #d2ee74; }
 .sector22 .s22-failed { color: #ffb7aa; border-color: #ffb7aa; }
