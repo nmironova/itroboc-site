@@ -2,7 +2,7 @@ import { useRef, useState } from 'react'
 import './Sector22.css'
 
 // Replace this with the topic subscribed to in the Android ntfy app.
-const NTFY_TOPIC = 'halloween-zombie-7f3c9a82-manticora-20261'
+const NTFY_TOPIC = 'halloween-zombie-7f3c9a82-manticora-2026'
 const ROUTE_IMAGE_BASE = 'https://itroboc.com/sector22/routes'
 const ROUTE_COUNT = 57
 
@@ -11,6 +11,7 @@ const markingMessage = 'ОБНАРУЖЕНА СЛУЖЕБНАЯ МАРКИРОВ
 const routeInstructions: Record<string, string> = {
   '15': equipmentMessage,
   '23': equipmentMessage,
+  '35': equipmentMessage,
   '46': equipmentMessage,
   '47': equipmentMessage,
   '09': markingMessage,
