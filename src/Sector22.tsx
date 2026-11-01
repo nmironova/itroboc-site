@@ -5,6 +5,18 @@ import './Sector22.css'
 const NTFY_TOPIC = 'halloween-zombie-7f3c9a82-manticora-2026'
 const ROUTE_IMAGE_BASE = 'https://itroboc.com/sector22/routes'
 const ROUTE_COUNT = 57
+// Insert filenames use underscores; button labels use hyphens.
+const routeInserts: Record<string, number> = { '24': 3, '27': 1, '28': 1, '46': 2, '48': 2 }
+const routes = Array.from({ length: ROUTE_COUNT }, (_, i) => {
+  const route = String(i + 1).padStart(2, '0')
+  return [
+    { id: route, filename: `route-${route}.jpg` },
+    ...Array.from({ length: routeInserts[route] ?? 0 }, (_, insert) => ({
+      id: `${route}-${insert + 1}`,
+      filename: `${route}_${insert + 1}.jpg`,
+    })),
+  ]
+}).flat()
 
 const equipmentMessage = 'ВНИМАНИЕ. ОБНАРУЖЕН АВАРИЙНЫЙ КОМПЛЕКТ.\nВ указанной зоне находится оборудование, необходимое для восстановления системы.\nОсмотрите территорию. Найдите оборудование.'
 const markingMessage = 'ОБНАРУЖЕНА СЛУЖЕБНАЯ МАРКИРОВКА.\nВ указанной зоне присутствуют скрытые технические обозначения.'
@@ -68,7 +80,7 @@ export default function Sector22() {
       const receipt = await response.json()
       if (receipt.event !== 'message') throw new Error('No publish receipt')
       setResult('sent')
-      setStatus(`✓ TRANSMISSION SENT — ${data.attach ? `ROUTE ${data.attach.match(/route-(\d+)/)?.[1]}` : data.title}`)
+      setStatus(`✓ TRANSMISSION SENT — ${data.attach ? `ROUTE ${data.attach.split('/').pop()?.replace(/^route-/, '').replace(/\.jpg$/, '').replace(/_/g, '-')}` : data.title}`)
     } catch {
       setResult('failed')
       setStatus('✗ TRANSMISSION FAILED — check connection and topic. If timed out, check the phone before retrying.')
@@ -112,15 +124,15 @@ export default function Sector22() {
           <h2 id="s22-routes">02 / ROUTE TRANSMISSIONS</h2>
           <p className="s22-hint">Tap a route to send its photograph.</p>
           <div className="s22-routes">
-            {Array.from({ length: ROUTE_COUNT }, (_, i) => String(i + 1).padStart(2, '0')).map(route => (
-              <button key={route} disabled={busy} aria-label={`Transmit route ${route}`} onClick={() => void transmit({
+            {routes.map(route => (
+              <button key={route.id} disabled={busy} aria-label={`Transmit route ${route.id}`} onClick={() => void transmit({
                 title: '📡 ROUTE DATA RECEIVED',
-                message: `Proceed to the location shown.${routeInstructions[route] ? `\n\n${routeInstructions[route]}` : ''}`,
+                message: `Proceed to the location shown.${routeInstructions[route.id] ? `\n\n${routeInstructions[route.id]}` : ''}`,
                 priority: 'high',
-                attach: `${ROUTE_IMAGE_BASE}/route-${route}.jpg`,
+                attach: `${ROUTE_IMAGE_BASE}/${route.filename}`,
               })}>
-                <img src={`/sector22/routes/route-${route}.jpg`} alt="" loading="lazy" decoding="async" />
-                <span>{route}</span>
+                <img src={`/sector22/routes/${route.filename}`} alt="" loading="lazy" decoding="async" />
+                <span>{route.id}</span>
               </button>
             ))}
           </div>
