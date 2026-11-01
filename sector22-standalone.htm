@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Sector 22 — Pocket Transmitter</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 24px 16px; background: #0b100e; color: #edf5e9; font: 16px/1.5 system-ui, sans-serif; }
+    main { max-width: 480px; margin: auto; }
+    h1 { color: #d2ee74; font-size: 28px; margin: 0 0 8px; }
+    p { color: #b9c7b5; }
+    label { display: block; margin: 20px 0 8px; font-weight: 700; }
+    textarea, button { width: 100%; font: inherit; border-radius: 8px; }
+    textarea { padding: 12px; background: #172018; border: 1px solid #71816b; color: white; resize: vertical; }
+    button { min-height: 60px; padding: 14px; margin-top: 12px; border: 1px solid #d2ee74; background: #d2ee74; color: #11180d; font-weight: 700; cursor: pointer; touch-action: manipulation; }
+    button.secondary { background: #1b291d; color: #d2ee74; }
+    button:disabled { opacity: .45; cursor: default; }
+    :focus-visible { outline: 3px solid #ffe195; outline-offset: 3px; }
+    img { display: block; width: 140px; height: 140px; object-fit: cover; border-radius: 8px; margin: 20px auto 8px; }
+    #status { padding: 14px; border: 1px solid #71816b; background: #172018; color: #edf5e9; overflow-wrap: anywhere; }
+    small { display: block; color: #b9c7b5; margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>SECTOR 22 / POCKET TRANSMITTER</h1>
+    <p>Standalone sender. Internet access required.</p>
+    <label for="message">MESSAGE</label>
+    <textarea id="message" rows="4" maxlength="1000">Sector 22 check-in. Stay alert — cat activity detected!</textarea>
+    <img id="preview" alt="Surprised black cat" referrerpolicy="no-referrer">
+    <button id="send-text" type="button">SEND TEXT ONLY</button>
+    <button id="send-picture" class="secondary" type="button">SEND TEXT + CAT PICTURE</button>
+    <p id="status" role="status" aria-live="polite" aria-atomic="true">READY TO TRANSMIT</p>
+    <small>Open this file in a browser that allows JavaScript. Sent means ntfy accepted the message; check the receiving phone for delivery and the image.</small>
+  </main>
+  <script>
+    // Configuration: topic name only, without https://ntfy.sh/.
+    const NTFY_TOPIC = 'halloween-zombie-7f3c9a82-manticora-2026';
+    // Direct image URL extracted from the Google Images link.
+    const PICTURE_URL = 'https://media.istockphoto.com/id/173240099/photo/surprise-kitty-cute-black-cat-screaming.jpg?s=612x612&w=0&k=20&c=fKCBMfIQuunPUC0DQTcI25iFnBAEaCfLxZX94oajjNM=';
+
+    const message = document.getElementById('message');
+    const status = document.getElementById('status');
+    const textButton = document.getElementById('send-text');
+    const pictureButton = document.getElementById('send-picture');
+    let busy = false;
+    document.getElementById('preview').src = PICTURE_URL;
+
+    async function transmit(withPicture) {
+      if (busy) return;
+      const text = message.value.trim();
+      if (!text) {
+        status.textContent = 'Enter a message first.';
+        message.focus();
+        return;
+      }
+      busy = true;
+      textButton.disabled = pictureButton.disabled = true;
+      status.textContent = 'TRANSMITTING…';
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 15000);
+      try {
+        const url = new URL('https://ntfy.sh/' + encodeURIComponent(NTFY_TOPIC) + '/publish');
+        url.searchParams.set('title', 'SECTOR 22 / FIELD MESSAGE');
+        url.searchParams.set('message', text);
+        url.searchParams.set('priority', 'high');
+        if (withPicture) url.searchParams.set('attach', PICTURE_URL);
+        const response = await fetch(url, {
+          cache: 'no-store', credentials: 'omit', referrerPolicy: 'no-referrer', signal: controller.signal
+        });
+        if (!response.ok) throw new Error('HTTP ' + response.status);
+        const receipt = await response.json();
+        if (receipt.event !== 'message') throw new Error('No message receipt');
+        status.textContent = '✓ TRANSMISSION SENT' + (withPicture ? ' — WITH CAT PICTURE' : ' — TEXT ONLY');
+      } catch (error) {
+        status.textContent = '✗ TRANSMISSION NOT CONFIRMED — ' + (error.name === 'AbortError' ? 'Timed out.' : error.message + '.') + ' Check internet access and the receiving phone before retrying. If a file viewer blocks sending, open the file in a full browser.';
+      } finally {
+        clearTimeout(timeout);
+        setTimeout(() => {
+          busy = false;
+          textButton.disabled = pictureButton.disabled = false;
+        }, 2000);
+      }
+    }
+    textButton.addEventListener('click', () => transmit(false));
+    pictureButton.addEventListener('click', () => transmit(true));
+  </script>
+</body>
+</html>

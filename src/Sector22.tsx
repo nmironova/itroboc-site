@@ -2,9 +2,22 @@ import { useRef, useState } from 'react'
 import './Sector22.css'
 
 // Replace this with the topic subscribed to in the Android ntfy app.
-const NTFY_TOPIC = 'halloween-zombie-7f3c9a82-manticora-2026'
+const NTFY_TOPIC = 'halloween-zombie-7f3c9a82-manticora-20261'
 const ROUTE_IMAGE_BASE = 'https://itroboc.com/sector22/routes'
 const ROUTE_COUNT = 57
+
+const equipmentMessage = 'ВНИМАНИЕ. ОБНАРУЖЕН АВАРИЙНЫЙ КОМПЛЕКТ.\nВ указанной зоне находится оборудование, необходимое для восстановления системы.\nОсмотрите территорию. Найдите оборудование.'
+const markingMessage = 'ОБНАРУЖЕНА СЛУЖЕБНАЯ МАРКИРОВКА.\nВ указанной зоне присутствуют скрытые технические обозначения.'
+const routeInstructions: Record<string, string> = {
+  '15': equipmentMessage,
+  '23': equipmentMessage,
+  '46': equipmentMessage,
+  '47': equipmentMessage,
+  '09': markingMessage,
+  '18': markingMessage,
+  '31': markingMessage,
+  '40': markingMessage,
+}
 
 type Transmission = {
   title: string
@@ -99,7 +112,9 @@ export default function Sector22() {
           <div className="s22-routes">
             {Array.from({ length: ROUTE_COUNT }, (_, i) => String(i + 1).padStart(2, '0')).map(route => (
               <button key={route} disabled={busy} aria-label={`Transmit route ${route}`} onClick={() => void transmit({
-                title: '📡 ROUTE DATA RECEIVED', message: 'Proceed to the location shown.', priority: 'high',
+                title: '📡 ROUTE DATA RECEIVED',
+                message: `Proceed to the location shown.${routeInstructions[route] ? `\n\n${routeInstructions[route]}` : ''}`,
+                priority: 'high',
                 attach: `${ROUTE_IMAGE_BASE}/route-${route}.jpg`,
               })}>
                 <img src={`/sector22/routes/route-${route}.jpg`} alt="" loading="lazy" decoding="async" />
